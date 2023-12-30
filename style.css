@@ -1,0 +1,140 @@
+body {
+  background-color: #f5f5f5;
+  font-family: poppins;
+}
+
+.container h1 {
+  font-weight: 800;
+}
+.navbar-brand {
+  font-family: "Comforter Brush", cursive;
+  font-size: 3rem;
+}
+.navbar-brand:hover {
+  color: #f2be22;
+}
+
+/* catagory page design */
+.category-head {
+  margin: 30px 0;
+}
+.category-head ul {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.category-title {
+  flex: 0 0 calc(16.6667% - 10px);
+  display: flex;
+  justify-content: center;
+  background: #272829;
+  padding: 12px;
+  color: #fff;
+  margin: 5px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  font-size: 20px;
+  border-radius: 10px;
+}
+.category-title:hover {
+  opacity: 0.7;
+}
+.category-title li {
+  padding: 0 10px;
+}
+
+/* contact form design */
+.contact-us {
+  background: #f5f5f5;
+}
+.form-area {
+  padding-top: 7%;
+}
+.row.single-form {
+  box-shadow: 0 2px 20px -5px rgba(0, 0, 0, 0.5);
+}
+.left {
+  background: #f2be22;
+  padding: 200px 98px;
+}
+.left h2 {
+  font-family: poppins;
+  color: #f5f5f5;
+  font-weight: 700;
+  font-size: 48px;
+}
+.left h2 span {
+  font-weight: 100;
+}
+.single-form {
+  background: #f5f5f5;
+}
+.right {
+  padding: 70px 100px;
+  position: relative;
+}
+.right i {
+  position: absolute;
+  font-size: 80px;
+  left: -27px;
+  top: 40%;
+  color: #f5f5f5;
+}
+.form-control {
+  border: 2px solid #000;
+}
+.right button {
+  border: none;
+  border-radius: 0;
+  background: #252525;
+  width: 180px;
+  color: #f5f5f5;
+  padding: 15px 0;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+.right button:hover {
+  background-color: #252525;
+}
+
+/*responsive*/
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .right i {
+    top: -52px;
+    transform: rotate(90deg);
+    left: 50%;
+  }
+}
+
+@media (max-width: 767px) {
+  .left {
+    padding: 90px 15px;
+    text-align: center;
+  }
+  .left h2 {
+    font-size: 25px;
+  }
+  .right {
+    padding: 25px;
+  }
+  .right i {
+    top: -52px;
+    transform: rotate(90deg);
+    left: 46%;
+  }
+  .right button {
+    width: 150px;
+    padding: 12px 0;
+  }
+}
+
+.footer-links {
+  font-size: 30px;
+}
+
+/* login */
