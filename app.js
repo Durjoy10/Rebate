@@ -23,7 +23,13 @@ app.get("/", function (req, res) {
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 
-mongoose.connect('mongodb://localhost:27017/rebate-register', { useNewUrlParser: true, useUnifiedTopology: true });
+const mongoose = require('mongoose');
+
+// Update the MongoDB Atlas connection string
+mongoose.connect('mongodb+srv://durjoydey10:durjoy10@rebate.ndrhjgi.mongodb.net/rebate-register', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
 
 const userSchema = new mongoose.Schema({
     name: String,
@@ -32,6 +38,7 @@ const userSchema = new mongoose.Schema({
 });
 
 const User = mongoose.model('User', userSchema);
+
 
 app.get('/login', (req, res) => {
     res.sendFile(__dirname + '/Rebate/public/login.html');
