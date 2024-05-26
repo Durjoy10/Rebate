@@ -1,19 +1,18 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const bodyParser = require('body-parser');
+require('dotenv').config(); // Ensure dotenv is used to load environment variables in local development
 
 const app = express();
 app.use(bodyParser.json());
 
-// MongoDB Atlas connection string
-const uri = "mongodb+srv://durjoydey10:durjoy10@rebate.ndrhjgi.mongodb.net/?retryWrites=true&w=majority&appName=rebate";
+// Use the environment variable for the MongoDB connection string
+const uri = process.env.MONGODB_URI;
 
-// Connect to MongoDB Atlas
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("Connected to MongoDB Atlas"))
   .catch(err => console.error("Error connecting to MongoDB Atlas:", err));
 
-// Define user schema
 const userSchema = new mongoose.Schema({
     name: String,
     email: String,
@@ -22,7 +21,10 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-// Login route
+app.get('/login', (req, res) => {
+    res.sendFile(__dirname + '/Rebate/public/login.html');
+});
+
 app.post('/api/login', async (req, res) => {
     const { email, password } = req.body;
 
@@ -30,14 +32,11 @@ app.post('/api/login', async (req, res) => {
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             if (existingUser.password === password) {
-                // Successful login
                 res.json({ success: true, message: 'Login successful' });
             } else {
-                // Invalid password
                 res.json({ success: false, message: 'Invalid email or password' });
             }
         } else {
-            // User does not exist
             res.json({ success: false, message: 'User does not exist' });
         }
     } catch (error) {
@@ -45,17 +44,14 @@ app.post('/api/login', async (req, res) => {
     }
 });
 
-// Signup route
 app.post('/api/signup', async (req, res) => {
     const { name, email, password } = req.body;
 
     try {
         const existingUser = await User.findOne({ email });
         if (existingUser) {
-            // Email already exists
             res.json({ success: false, message: 'Email already exists' });
         } else {
-            // Create new user
             const newUser = new User({ name, email, password });
             await newUser.save();
             res.json({ success: true, message: 'Sign up successful' });
